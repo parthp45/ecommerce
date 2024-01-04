@@ -1,4 +1,6 @@
 "use client";
+import { StyleProvider } from "@ant-design/cssinjs";
+import { ConfigProvider } from "antd";
 import React, { ReactNode, createContext, useState } from "react";
 
 interface ThemeProviderType {
@@ -28,7 +30,19 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const value = { theme, toggleTheme };
 
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorBgBase: theme === "dark" ? "#1f1f1f" : "white",
+            colorText: theme === "dark" ? "white" : "black",
+            fontFamily: `var(--quick)`,
+          },
+        }}
+      >
+        {children}
+      </ConfigProvider>
+    </ThemeContext.Provider>
   );
 };
 

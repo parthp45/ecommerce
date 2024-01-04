@@ -1,0 +1,3 @@
+.drawerWrapper :global(.ant-drawer-header-title .ant-drawer-title) {
+  font-size: 2rem;
+}

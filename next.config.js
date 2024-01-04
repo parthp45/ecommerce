@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ["demo.vercel.store"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
