@@ -6,7 +6,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     open: false,
-    cartItems: new Map(),
+    cartItems: [] as CartItem[],
   },
   reducers: {
     toggleCart: (state, action) => {
@@ -14,28 +14,43 @@ const cartSlice = createSlice({
     },
     addCartItems: (state, action) => {
       const { id } = action.payload;
-      const existingItem = state.cartItems.get(id);
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item?.id === id
+      );
 
-      if (existingItem) {
-        state.cartItems.set(id, {
-          ...existingItem,
-          quantity: existingItem?.quantity! + 1,
-        });
+      if (existingItemIndex !== -1) {
+        state.cartItems[existingItemIndex] = {
+          ...state.cartItems[existingItemIndex],
+          quantity: state.cartItems[existingItemIndex]?.quantity! + 1,
+        };
       } else {
-        state.cartItems.set(id, { ...action.payload, quantity: 1 });
+        state.cartItems.push({ ...action.payload, quantity: 1 });
       }
     },
     updateCartItemQuantity: (state, action) => {
       const { id, quantity } = action.payload;
-      const existingItem = state.cartItems.get(id);
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item.id === id
+      );
 
-      if (existingItem) {
-        state.cartItems.set(id, { ...existingItem, quantity });
+      if (existingItemIndex !== -1) {
+        state.cartItems[existingItemIndex] = {
+          ...state.cartItems[existingItemIndex],
+          quantity,
+        };
       }
+    },
+    removeCartItem: (state, action) => {
+      const { id } = action.payload;
+      state.cartItems = state.cartItems.filter((item) => item.id !== id);
     },
   },
 });
 
-export const { toggleCart, addCartItems, updateCartItemQuantity } =
-  cartSlice.actions;
+export const {
+  toggleCart,
+  addCartItems,
+  updateCartItemQuantity,
+  removeCartItem,
+} = cartSlice.actions;
 export default cartSlice.reducer;

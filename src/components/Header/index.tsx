@@ -1,43 +1,32 @@
 "use client";
 
-import Link from "next/link";
-import React, { useState } from "react";
-import ThemeSelector from "../ThemeSelector";
-import CartDrawer from "../CartDrawer";
-import { ShoppingCart, Storefront } from "@phosphor-icons/react";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleCart } from "@/utils/cartSlice";
 import { CartSliceType } from "@/common/commonTypes";
+import { raleway } from "@/common/fonts";
+import { toggleCart } from "@/utils/cartSlice";
 import { RootState } from "@/utils/store";
+import { ShoppingCart, Storefront } from "@phosphor-icons/react";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import CartDrawer from "../CartDrawer";
+import ThemeSelector from "../ThemeSelector";
 
 const Header = () => {
   const cartData = useSelector<CartSliceType>((state) => state.cart?.open);
   const cartItems = useSelector((state: RootState) => state.cart?.cartItems);
   const dispatch = useDispatch();
 
-  const totalQuantity = Array.from(cartItems.values()).reduce(
-    (total, item) => total + item.quantity,
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity!,
     0
   );
 
   return (
     <header
-      className={`flex items-center shadow-lg dark:bg-black dark:text-white dark:shadow-blue-600 dark:shadow-sm p-3`}
+      className={`flex items-center shadow-lg dark:bg-black dark:text-white dark:shadow-blue-600 dark:shadow-sm p-3 sticky top-0 z-40 bg-white ${raleway.className}`}
     >
       <div className={`flex items-center gap-4`}>
         <Link href="/">
-          <Storefront
-            size={28}
-            weight="duotone"
-            className={" text-purple-500"}
-          />
-        </Link>
-
-        <Link href="/orders" className="font-semibold">
-          Orders
-        </Link>
-        <Link href="/cart" className="font-semibold">
-          Cart
+          <Storefront size={28} weight="regular" className={" text-blue-600"} />
         </Link>
       </div>
       <div className={`flex items-center gap-4 ml-auto`}>

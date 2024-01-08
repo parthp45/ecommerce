@@ -1,21 +1,17 @@
 "use client";
 
-import { CartItem, CartSliceType } from "@/common/commonTypes";
-import { jakarta, monst, quicksand } from "@/common/fonts";
+import { jakarta, quicksand } from "@/common/fonts";
 import { addCartItems, toggleCart } from "@/utils/cartSlice";
 import { getAllProducts } from "@/utils/getAllProducts";
-import { Metadata } from "next";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const ProductInfo = () => {
   const params = useParams();
   const data = getAllProducts();
   const cartItem = data.find((item) => `${item.id}` === params?.id);
   const dispatch = useDispatch();
-  const cartData = useSelector<CartSliceType>((state) => state?.cart?.open);
 
   const handleCartItems = () => {
     dispatch(toggleCart(true));
@@ -29,6 +25,7 @@ const ProductInfo = () => {
           alt={cartItem?.name!}
           width={600}
           height={600}
+          priority
         />
       </div>
       <div className="w-full sm:w-[450px]">
