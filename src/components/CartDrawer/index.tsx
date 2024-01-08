@@ -117,7 +117,9 @@ const CartDrawer: React.FC = () => {
                 <div className="relative h-16 w-16 cursor-pointer  rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800 grid place-content-center">
                   <button
                     className={` absolute top-[-4px] right-[0] p-[3px] bg-red-800 rounded-md`}
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => {
+                      removeItem(item.id);
+                    }}
                   >
                     <X size={12} className={`text-white`} />
                   </button>
@@ -181,7 +183,10 @@ const CartDrawer: React.FC = () => {
             </h4>
             <button
               className={`w-full p-3 text-white mt-1 mb-2 rounded-2xl bg-blue-700 text-lg transition-all hover:bg-blue-900`}
-              onClick={() => router.push("/checkout")}
+              onClick={() => {
+                router.push("/checkout");
+                dispatch(toggleCart(false));
+              }}
             >
               Checkout
             </button>
