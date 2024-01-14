@@ -10,6 +10,12 @@ const Checkout = () => {
   return (
     <div>
       <h1>Checkout</h1>
+      {cartItems.map((item) => (
+        <div key={item.id}>
+          <p>{item.name}</p>
+          <p>{item.quantity}</p>
+        </div>
+      ))}
     </div>
   );
 };

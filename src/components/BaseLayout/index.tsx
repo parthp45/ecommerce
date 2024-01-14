@@ -1,3 +1,5 @@
+"use client";
+
 import appStore from "@/utils/store";
 import React from "react";
 import ThemeProvider from "../ThemeProvider";

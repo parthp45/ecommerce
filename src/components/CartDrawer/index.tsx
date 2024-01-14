@@ -108,7 +108,7 @@ const CartDrawer: React.FC = () => {
               <h2 className="font-semibold text-3xl ">Your cart is empty.</h2>
             </div>
           )}
-          <section className={`overflow-auto h-[calc(100vh-175px)] p-6`}>
+          <section className={`overflow-auto h-[calc(100dvh-175px)] p-6`}>
             {cartItems?.map((item) => (
               <div
                 key={item.id}

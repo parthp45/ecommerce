@@ -5,10 +5,15 @@ import {
   Poppins,
   Quicksand,
   Raleway,
+  Inter,
 } from "next/font/google";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--jakarta",
+  subsets: ["latin"],
+});
+const inter = Inter({
+  variable: "--inter",
   subsets: ["latin"],
 });
 const cabin = Cabin({
@@ -39,4 +44,4 @@ const raleway = Raleway({
   subsets: ["latin"],
 });
 
-export { jakarta, cabin, quicksand, monst, poppins, raleway };
+export { jakarta, cabin, quicksand, monst, poppins, raleway, inter };

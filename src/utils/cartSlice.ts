@@ -12,6 +12,9 @@ const cartSlice = createSlice({
     toggleCart: (state, action) => {
       state.open = action.payload;
     },
+    addAllCartItems: (state, action) => {
+      state.cartItems = action.payload;
+    },
     addCartItems: (state, action) => {
       const { id } = action.payload;
       const existingItemIndex = state.cartItems.findIndex(
@@ -52,5 +55,6 @@ export const {
   addCartItems,
   updateCartItemQuantity,
   removeCartItem,
+  addAllCartItems,
 } = cartSlice.actions;
 export default cartSlice.reducer;
